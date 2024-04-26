@@ -42,7 +42,7 @@
 	
 	Outcome
 	Trying to deploy this project as a lambda did not work as the size of the package generated was 
-	 420 MB above the allowed package size limit was 262144000 bytes or 250 MB
+	 420 MB and allowed package size limit was 262144000 bytes or 250 MB
 	 
 
 
