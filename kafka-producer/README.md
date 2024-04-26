@@ -29,5 +29,21 @@
 	When you go to http://localhost:8080/hiThere you should see
 	{"message" : "Happy Birthday"}
 	
-# Now from a REST client configure a post to the endpoint that consumes the messages like
+# To Deploy this application on AWS lambda as a serverless app following this
+	inspiration: https://github.com/aws/serverless-java-container/wiki/Quick-start---Spring-Boot3
+	
+	Run maven clean, install and package
+	mvn clean install package
+	
+	create a template.yaml
+	
+	Then run 
+	./deploy.sh
+	
+	Outcome
+	Trying to deploy this project as a lambda did not work as the size of the package generated was 
+	 420 MB above the allowed package size limit was 262144000 bytes or 250 MB
+	 
+
+
 	
