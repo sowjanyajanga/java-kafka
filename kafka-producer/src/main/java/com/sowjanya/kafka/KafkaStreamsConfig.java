@@ -21,6 +21,9 @@ import org.springframework.kafka.config.KafkaStreamsConfiguration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
+import org.springframework.kafka.listener.DefaultErrorHandler;
+import org.springframework.util.backoff.BackOff;
+import org.springframework.util.backoff.FixedBackOff;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -121,4 +124,17 @@ public class KafkaStreamsConfig {
 		} return asString;}		
 		
 	};	
+	
+	
+	@Bean
+	public DefaultErrorHandler errorHandler() {
+	    BackOff fixedBackOff = new FixedBackOff(10, 4);
+	    DefaultErrorHandler errorHandler = new DefaultErrorHandler((consumerRecord, exception) -> {
+	        // logic to execute when all the retry attemps are exhausted
+	    	System.out.println("All retry attempts have been exhausted");
+	    }, fixedBackOff);
+	
+	    return errorHandler;
+	 }
+
 }
